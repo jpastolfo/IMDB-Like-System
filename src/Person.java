@@ -63,6 +63,8 @@ public class Person {
     public void setMovies(String movies) {
         this.movies = movies;
     }
+
+    public static void showMovies(String[] args) {
+        System.out.println("listaFilmes");
+    }
 }
-
-
