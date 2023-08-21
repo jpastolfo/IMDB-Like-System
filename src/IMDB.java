@@ -6,7 +6,9 @@ public class IMDB {
     private ArrayList<Actor> actors = new ArrayList<>();
     private ArrayList<Director> directors = new ArrayList<>();
 
-    public void registerMovie() {
+    public void registerMovie(String title,long releaseYear,Director director,Actor actor,float rating,long length,String genre) {
+        //new Movie(title,releaseYear,director,actor,rating,length,genre);
+        // the above line is commented until the Movie class is fully implemented.
         Movie movie = new Movie();
         movies.add(movie);
     }
