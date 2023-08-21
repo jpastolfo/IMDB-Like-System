@@ -1,8 +1,8 @@
 public class Actor extends Person {
     private String[] famousRoles;
 
-    public Actor(String name, int age, String nationality, String officialSite, double height, String movies, String[] famousRoles) {
-        super(name, age, nationality, officialSite, height, movies);
+    public Actor(String name, int age, String nationality, double height, String gender, String[] famousRoles) {
+        super(name, age, nationality, height, gender);
         this.famousRoles = famousRoles;
     }
 

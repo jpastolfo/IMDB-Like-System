@@ -3,17 +3,15 @@ public class Person {
     private String name;
     private int age;
     private String nationality;
-    private String officialSite;
     private double height;
-    private String movies;
+    private String gender;
 
-    public Person(String name, int age, String nationality, String officialSite, double height, String movies) {
+    public Person(String name, int age, String nationality, double height, String gender) {
         this.name = name;
         this.age = age;
         this.nationality = nationality;
-        this.officialSite = officialSite;
         this.height = height;
-        this.movies = movies;
+        this.gender = gender;
     }
 
     public String getName() {
@@ -40,14 +38,6 @@ public class Person {
         this.nationality = nationality;
     }
 
-    public String getOfficialSite() {
-        return officialSite;
-    }
-
-    public void setOfficialSite(String officialSite) {
-        this.officialSite = officialSite;
-    }
-
     public double getHeight() {
         return height;
     }
@@ -55,13 +45,8 @@ public class Person {
     public void setHeight(double height) {
         this.height = height;
     }
-
-    public String getMovies() {
-        return movies;
-    }
-
-    public void setMovies(String movies) {
-        this.movies = movies;
+    public void setGender(String gender){
+        this.gender = gender;
     }
 
     public static void showMovies(String[] args) {

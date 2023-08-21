@@ -1,8 +1,8 @@
 public class Director extends Person {
     private String[] directedMovies;
 
-    public Director(String name, int age, String nationality, String officialSite, double height, String movies, String[] directedMovies) {
-        super(name, age, nationality, officialSite, height, movies);
+    public Director(String name, int age, String nationality, double height, String gender, String[] directedMovies) {
+        super(name, age, nationality, height, gender);
         this.directedMovies = directedMovies;
     }
 
