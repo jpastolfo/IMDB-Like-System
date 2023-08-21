@@ -84,5 +84,9 @@ public class Movie {
         this.director = director;
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
 }
 
