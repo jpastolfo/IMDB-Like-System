@@ -12,22 +12,15 @@ public class Main {
 
         while (isRunning) {
             printMenu();
-            System.out.println(system.getActors());
-            System.out.println(system.getDirectors());
-            System.out.println(system.getMovies());
             String command = scanner.nextLine();
             switch (command) {
-                case "1" : {
-                    registerActor(system);
-                } break;
-                case "2" : {
-                    registerDirector(system);
-                } break;
-                case "3" : registerMovie(system); break;
-                case "4" : isRunning = false; break;
-                default :
-                    System.out.println("There's no command such as " +
-                            command + ". Try again.");
+                case "1" -> {registerActor(system,""); System.out.println(system.getActors());}
+                case "2" -> {registerDirector(system,""); System.out.println(system.getDirectors());}
+                case "3" -> registerMovie(system);
+                case "4" -> searchMovie(system);
+                case "9" -> isRunning = false;
+                default -> System.out.println("There's no command such as " +
+                        command + ". Try again.");
             }
         }
     }
@@ -37,20 +30,24 @@ public class Main {
         System.out.println("1. Register an Actor.");
         System.out.println("2. Register a Director.");
         System.out.println("3. Register a Movie.");
-        System.out.println("4. Exit.");
+        System.out.println("4. Search a Movie.");
+        System.out.println("9. Exit.");
     }
 
-    public static Actor registerActor(IMDB system) {
+    public static Actor registerActor(IMDB system,String spacer) {
         String[] attributes = {"Name","Age","Nationality","Height","Gender"};
         String[] values = new String[attributes.length];
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("=== Actor Registration ===");
+        System.out.println("\n"+spacer+"=== Actor Registration ===");
 
         for (int i = 0; i < attributes.length; i++) {
-            System.out.print(attributes[i] + ": ");
+            System.out.print(spacer+attributes[i] + ": ");
             values[i] = scanner.nextLine();
+            System.out.println(values[i]);
         }
+
+        System.out.println(spacer+"==========================\n");
 
         String name = values[0];
         int age = Integer.parseInt(values[1]);
@@ -63,17 +60,18 @@ public class Main {
         return actor;
     }
 
-    public static Director registerDirector(IMDB system) {
+    public static Director registerDirector(IMDB system,String spacer) {
         String[] attributes = {"Name","Age","Nationality","Height","Gender"};
         String[] values = new String[attributes.length];
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("=== Director Registration ===");
+        System.out.println("\n"+spacer+"=== Director Registration ===");
 
         for (int i = 0; i < attributes.length; i++) {
-            System.out.print(attributes[i] + ": ");
+            System.out.print(spacer+attributes[i] + ": ");
             values[i] = scanner.nextLine();
         }
+        System.out.println(spacer+"=============================\n");
 
         String name = values[0];
         int age = Integer.parseInt(values[1]);
@@ -92,7 +90,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("=== Movie Registration ===");
+        System.out.println("\n=== Movie Registration ===");
 
         Director directorToAdd = null;
         ArrayList<Actor> actors = new ArrayList<>();
@@ -104,22 +102,25 @@ public class Main {
 
                 if (!system.getDirectors().isEmpty()) {
                     directorToAdd = searchDirector(system,directorName);
-                } else registerDirector(system);
+                } else {
+                    System.out.println("Director not found. Please register the Director!");
+                    directorToAdd = registerDirector(system,"\t");
+                }
 
             } else if (attributes[i].equals("Actors")) {
                 System.out.print("How many Actors? ");
-                int numActors = scanner.nextInt();
+                int numActors = Integer.parseInt(scanner.nextLine());
 
                 for (int j = 0; j < numActors; j++) {
-                    System.out.println("Actor " + j + " name: ");
+                    System.out.print("Actor " + j + " name: ");
                     String actorName = scanner.nextLine();
 
                     if (!system.getActors().isEmpty()) {
-                        actors.add(searchActor(system,actorName));
-                        System.out.println(actors);
+                        Actor actorToAdd = searchActor(system,actorName);
+                        actors.add(actorToAdd);
                     } else {
-                        System.out.println("Actor not found.");
-                        registerActor(system);
+                        System.out.println("Actor not found. Please register the Actor!");
+                        registerActor(system,"\t");
                     }
                 }
 
@@ -128,7 +129,7 @@ public class Main {
                 values[i] = scanner.nextLine();
             }
         }
-
+        System.out.println("==========================");
         String title = values[0];
         int releaseYear = Integer.parseInt(values[1]);
         double rating = Double.parseDouble(values[4]);
@@ -142,12 +143,33 @@ public class Main {
     public static Director searchDirector(IMDB system,String directorName) {
         for (Director director: system.getDirectors()) {
             if (director.getName().equals(directorName)) return director;
-        } return registerDirector(system);
+        } return registerDirector(system,"\t");
     }
 
     public static Actor searchActor(IMDB system,String actorName) {
         for (Actor actor: system.getActors()) {
             if (actor.getName().equals(actorName)) return actor;
-        } return registerActor(system);
+        }
+        System.out.println("Actor not found. Please register the Actor!");
+        return registerActor(system,"\t");
+    }
+
+    public static void searchMovie(IMDB system) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Insert movie title to search: ");
+        String movieTitle = scanner.nextLine().toLowerCase();
+
+        boolean movieFound = false;
+        for (Movie movie: system.getMovies()) {
+            if (movie.getTitle().toLowerCase().equals(movieTitle)) {
+                System.out.println(movie);
+                movieFound = true;
+            }
+        }
+        if (!movieFound) {
+            System.out.print("Movie not found.\nDo you want to register it? (y/n)");
+            String choice = scanner.nextLine();
+            if (choice.equals("y")) registerMovie(system);
+        }
     }
 }
