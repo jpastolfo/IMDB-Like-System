@@ -1,3 +1,5 @@
+package entities;
+
 import java.lang.String;
 public class Person {
     private String name;

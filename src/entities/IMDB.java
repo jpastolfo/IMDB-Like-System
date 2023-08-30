@@ -1,3 +1,7 @@
+package entities;
+
+import entities.Actor;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,7 +37,7 @@ public class IMDB {
             }
         }
         if (!movieFound) {
-            System.out.print("Movie not found.\nDo you want to register it? (y/n) ");
+            System.out.print("entities.Movie not found.\nDo you want to register it? (y/n) ");
             String choice = scanner.nextLine();
             if (choice.equals("y")) registerMovie();
         }
@@ -41,27 +45,27 @@ public class IMDB {
 
     public Director searchDirector() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Director Name: ");
+        System.out.print("entities.Director Name: ");
         String directorName = scanner.nextLine();
         if (!getDirectors().isEmpty()) {
             for (Director director : getDirectors()) {
                 if (director.getName().equals(directorName)) return director;
             }
         }
-        System.out.print("Director not found. \nDo you want to register a new Director? (y/n) ");
+        System.out.print("entities.Director not found. \nDo you want to register a new entities.Director? (y/n) ");
         return (scanner.nextLine().equals("y")) ? registerDirector("\t") : null;
     }
 
     public Actor searchActor() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Actor name: ");
+        System.out.print("entities.Actor name: ");
         String actorName = scanner.nextLine();
         if (!getActors().isEmpty()) {
             for (Actor actor : getActors()) {
                 if (actor.getName().equals(actorName)) return actor;
             }
         }
-        System.out.print("Actor not found. \nDo you want to register a new Actor? (y/n) ");
+        System.out.print("entities.Actor not found. \nDo you want to register a new entities.Actor? (y/n) ");
         return (scanner.nextLine().equals("y")) ? registerActor("\t") : null;
     }
 
@@ -70,7 +74,7 @@ public class IMDB {
         String[] values = new String[attributes.length];
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n"+spacer+"=== Actor Registration ===");
+        System.out.println("\n"+spacer+"=== entities.Actor Registration ===");
 
         for (int i = 0; i < attributes.length; i++) {
             System.out.print(spacer+attributes[i] + ": ");
@@ -94,7 +98,7 @@ public class IMDB {
         String[] values = new String[attributes.length];
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n"+spacer+"=== Director Registration ===");
+        System.out.println("\n"+spacer+"=== entities.Director Registration ===");
 
         for (int i = 0; i < attributes.length; i++) {
             System.out.print(spacer+attributes[i] + ": ");
@@ -114,25 +118,25 @@ public class IMDB {
     }
 
     public void registerMovie() {
-        String[] attributes = {"Title","Release Year","Director","Actors","Rating","Length","Genre"};
+        String[] attributes = {"Title","Release Year","entities.Director","Actors","Rating","Length","genres.Genre"};
         String[] values = new String[attributes.length];
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n=== Movie Registration ===");
+        System.out.println("\n=== entities.Movie Registration ===");
 
         Director directorToAdd = null;
         ArrayList<Actor> actors = new ArrayList<>();
 
         for (int i = 0; i < attributes.length; i++) {
-            if  (attributes[i].equals("Director")) {
+            if  (attributes[i].equals("entities.Director")) {
                 directorToAdd = searchDirector();
 
             } else if (attributes[i].equals("Actors")) {
                 do {
                     Actor actorToAdd = searchActor();
                     actors.add(actorToAdd);
-                    System.out.print("Do you want to add another Actor? (y/n) ");
+                    System.out.print("Do you want to add another entities.Actor? (y/n) ");
                 } while (scanner.nextLine().equals("y"));
             } else {
                 System.out.print(attributes[i]+": ");

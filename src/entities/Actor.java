@@ -1,3 +1,5 @@
+package entities;
+
 public class Actor extends Person {
     private String[] famousRoles;
 

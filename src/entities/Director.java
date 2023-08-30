@@ -1,3 +1,7 @@
+package entities;
+
+import entities.Person;
+
 public class Director extends Person {
     private String[] directedMovies;
 
