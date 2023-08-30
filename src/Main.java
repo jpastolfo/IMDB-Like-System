@@ -14,11 +14,11 @@ public class Main {
             printMenu();
             String command = scanner.nextLine();
             switch (command) {
-                case "1" -> {registerActor(system,""); System.out.println(system.getActors());}
-                case "2" -> {registerDirector(system,""); System.out.println(system.getDirectors());}
+                case "1" -> registerActor(system,"");
+                case "2" -> registerDirector(system,"");
                 case "3" -> registerMovie(system);
                 case "4" -> searchMovie(system);
-                case "9" -> isRunning = false;
+                case "0" -> isRunning = false;
                 default -> System.out.println("There's no command such as " +
                         command + ". Try again.");
             }
@@ -26,12 +26,13 @@ public class Main {
     }
 
     public static void printMenu() {
-        System.out.println("Choose your action: ");
+        System.out.println("--- IMDB-Like System Menu ---");
         System.out.println("1. Register an Actor.");
         System.out.println("2. Register a Director.");
         System.out.println("3. Register a Movie.");
         System.out.println("4. Search a Movie.");
-        System.out.println("9. Exit.");
+        System.out.println("0. Exit.");
+        System.out.println("Command number: ");
     }
 
     public static Actor registerActor(IMDB system,String spacer) {
