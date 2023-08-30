@@ -1,5 +1,5 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import entities.IMDB;
+
 import java.util.Scanner;
 
 public class Main {
@@ -28,13 +28,13 @@ public class Main {
     }
 
     public static void printMenu() {
-        System.out.println("--- IMDB-Like System Menu ---");
-        System.out.println("1. Search a Movie.");
-        System.out.println("2. Search a Director");
-        System.out.println("3. Search an Actor.");
-        System.out.println("4. Register a Movie.");
-        System.out.println("5. Register a Director.");
-        System.out.println("6. Register an Actor.");
+        System.out.println("--- entities.IMDB-Like System Menu ---");
+        System.out.println("1. Search a entities.Movie.");
+        System.out.println("2. Search a entities.Director");
+        System.out.println("3. Search an entities.Actor.");
+        System.out.println("4. Register a entities.Movie.");
+        System.out.println("5. Register a entities.Director.");
+        System.out.println("6. Register an entities.Actor.");
         System.out.println("0. Exit.");
         System.out.println("Command number: ");
     }
